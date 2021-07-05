@@ -13,6 +13,8 @@
 		0D70BBFA269312F9008518A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D70BBF9269312F9008518A9 /* Preview Assets.xcassets */; };
 		0DCDBBD9269314AE00EF1EAE /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 0DCDBBD7269314AE00EF1EAE /* data.json */; };
 		0DCDBBDA269314AE00EF1EAE /* style.html in Resources */ = {isa = PBXBuildFile; fileRef = 0DCDBBD8269314AE00EF1EAE /* style.html */; };
+		0DCDBBDC2693187C00EF1EAE /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDBBDB2693187C00EF1EAE /* ContentModel.swift */; };
+		0DCDBBDE26931E5100EF1EAE /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCDBBDD26931E5100EF1EAE /* Module.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0D70BBFB269312F9008518A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DCDBBD7269314AE00EF1EAE /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = data.json; path = "../../../../../../Desktop/TUTOS/SWIFT UI/code with chris/iOS Foundations 2021/Module 5/Lesson 05/LearningApp/LearningApp/Resources/data.json"; sourceTree = "<group>"; };
 		0DCDBBD8269314AE00EF1EAE /* style.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = style.html; path = "../../../../../../Desktop/TUTOS/SWIFT UI/code with chris/iOS Foundations 2021/Module 5/Lesson 05/LearningApp/LearningApp/Resources/style.html"; sourceTree = "<group>"; };
+		0DCDBBDB2693187C00EF1EAE /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		0DCDBBDD26931E5100EF1EAE /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 		0DCDBBD3269313A000EF1EAE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0DCDBBDD26931E5100EF1EAE /* Module.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -86,6 +91,7 @@
 		0DCDBBD4269313AE00EF1EAE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0DCDBBDB2693187C00EF1EAE /* ContentModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -179,7 +185,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D70BBF5269312F7008518A9 /* HomeView.swift in Sources */,
+				0DCDBBDE26931E5100EF1EAE /* Module.swift in Sources */,
 				0D70BBF3269312F7008518A9 /* LearningApp.swift in Sources */,
+				0DCDBBDC2693187C00EF1EAE /* ContentModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
