@@ -12,6 +12,9 @@ class ContentModel: ObservableObject{
     //Declaration of the proprety
     @Published var modules = [Module]()
     
+    @Published var currentModule:Module?
+    var currentModuleIndex = 0
+    
     var styleData: Data?
     
     
@@ -21,6 +24,7 @@ class ContentModel: ObservableObject{
         getLocalData()
     }
     
+    // Mark - Data
     //Get local data Parsing JSON File
     func getLocalData(){
         
@@ -56,5 +60,23 @@ class ContentModel: ObservableObject{
             //impossible to parse de the file
             print(error)
         }
+    }
+    
+    
+    //Mark - Function
+    //get module by id
+    
+    func beginModule(_ moduleId:Int){
+        
+        //Find the index for this module id
+        for index in 0..<modules.count{
+            if modules[index].id ==  moduleId {
+                currentModuleIndex = index
+                break
+            }
+        }
+        
+        //set the current module
+        currentModule = modules[currentModuleIndex]
     }
 }
