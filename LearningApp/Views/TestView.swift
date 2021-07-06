@@ -16,95 +16,101 @@ struct TestView: View {
     @State var submit = false
     
     
+    
     var body: some View {
         
-        if model.currentQuestion != nil {
-            VStack{
-                //Questions Number
-                Text("Question \(model.currentQuestionIndex + 1 ) of \(model.currentModule?.test.questions.count ?? 0)")
-                    .padding(.leading, 20)
-                
-                //Questions
-                CodeTextView()
-                    .padding(.horizontal,20)
-                //Answers
-                
-                ScrollView{
-                    LazyVStack{
-                        ForEach(0..<model.currentQuestion!.answers.count , id : \.self) { index in
-                            
-                            Button {
-                                selectedAnswersIndex = index
-                            }label: {
-                                ZStack{
-                                    
-                                    if( submit == false){
-                                        RectangleCardButton(color: index == selectedAnswersIndex ? .gray : .white)
-                                            .frame(height:48)
-                                    }else{
+        VStack{
+            if model.currentQuestion != nil {
+                VStack{
+                    //Questions Number
+                    Text("Question \(model.currentQuestionIndex + 1 ) of \(model.currentModule?.test.questions.count ?? 0)")
+                        .padding(.leading, 20)
+                    
+                    //Questions
+                    CodeTextView()
+                        .padding(.horizontal,20)
+                    //Answers
+                    
+                    ScrollView{
+                        LazyVStack{
+                            ForEach(0..<model.currentQuestion!.answers.count , id : \.self) { index in
+                                
+                                Button {
+                                    selectedAnswersIndex = index
+                                }label: {
+                                    ZStack{
                                         
-                                        if index == selectedAnswersIndex && index == model.currentQuestion!.correctIndex || index == model.currentQuestion!.correctIndex{
+                                        if( submit == false){
+                                            RectangleCardButton(color: index == selectedAnswersIndex ? .gray : .white)
+                                                .frame(height:48)
+                                        }else{
                                             
-                                            RectangleCardButton(color: .green)
-                                                .frame(height:48)
+                                            if index == selectedAnswersIndex && index == model.currentQuestion!.correctIndex || index == model.currentQuestion!.correctIndex{
+                                                
+                                                RectangleCardButton(color: .green)
+                                                    .frame(height:48)
+                                            }
+                                            else if index == selectedAnswersIndex && index != model.currentQuestion!.correctIndex{
+                                                
+                                                RectangleCardButton(color: .red)
+                                                    .frame(height:48)
+                                            }
+                                            else{
+                                                RectangleCardButton(color: .white)
+                                                    .frame(height:48)
+                                            }
                                         }
-                                        else if index == selectedAnswersIndex && index != model.currentQuestion!.correctIndex{
-                                            
-                                            RectangleCardButton(color: .red)
-                                                .frame(height:48)
-                                        }
-                                        else{
-                                            RectangleCardButton(color: .white)
-                                                .frame(height:48)
-                                        }
+                                        
+                                        
+                                        Text(model.currentQuestion!.answers[index])
+                                        
                                     }
-                                    
-                                    
-                                    Text(model.currentQuestion!.answers[index])
-                                    
-                                }
-                            }.disabled(submit)
+                                }.disabled(submit)
+                                
+                            }
                             
-                        }
-                        
-                    }.padding()
-                    .accentColor(.black)
-                }
-                
-                //Button
-                Button{
-                    // check if  answer has been submitted
-                    if submit{
-                        // if is submitted pass to the next question
-                        model.nextQuestion()
-                        
-                        //reset proprety
-                        selectedAnswersIndex = nil
-                        submit = false
-                    }else{
-                        // if not submitted the answer
-                        submit = true
-                        numCorrect += selectedAnswersIndex == model.currentQuestion!.correctIndex ? 1 : 0
+                        }.padding()
+                        .accentColor(.black)
                     }
                     
-                } label: {
-                    ZStack{
-                        
-                        RectangleCardButton(color: .green)
-                            .frame(height:48)
-                        
-                        Text(buttonText)
-                            .foregroundColor(.white)
-                        
-                    }.padding()
                     
-                }.disabled(selectedAnswersIndex == nil)
+                }.navigationBarTitle("\(model.currentModule?.category ?? "") Test")
+            }
+            else{
                 
-            }.navigationBarTitle("\(model.currentModule?.category ?? "") Test")
+            }
+            
+            //Button
+            Button{
+                // check if  answer has been submitted
+                if submit{
+                    // if is submitted pass to the next question
+                    model.nextQuestion()
+                    
+                    //reset proprety
+                    selectedAnswersIndex = nil
+                    submit = false
+                }else{
+                    // if not submitted the answer
+                    submit = true
+                    numCorrect += selectedAnswersIndex == model.currentQuestion!.correctIndex ? 1 : 0
+                }
+                
+            } label: {
+                ZStack{
+                    
+                    RectangleCardButton(color: .green)
+                        .frame(height:48)
+                    
+                    Text(buttonText)
+                        .foregroundColor(.white)
+                    
+                }.padding()
+                
+            }.disabled(selectedAnswersIndex == nil)
+            
         }
-        else{
-            Text("Is Nil")
-        }
+        
     }
     
     var buttonText:String{

@@ -123,6 +123,10 @@ class ContentModel: ObservableObject{
             currentQuestion = currentModule?.test.questions[currentQuestionIndex]
             lessonDescription = addStyling(currentQuestion!.content)
         }
+        else{
+            currentQuestionIndex = 0
+            currentQuestion = nil
+        }
     }
     
     func nextQuestion(){
@@ -137,7 +141,6 @@ class ContentModel: ObservableObject{
             lessonDescription = addStyling(currentQuestion!.content)
         }
         else{
-            
             currentQuestionIndex = 0
             currentQuestion = nil
         }
