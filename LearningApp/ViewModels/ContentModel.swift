@@ -125,6 +125,23 @@ class ContentModel: ObservableObject{
         }
     }
     
+    func nextQuestion(){
+        
+        // advance the question index
+        currentQuestionIndex += 1
+        
+        //Check that it's  within the range of  of questions
+        if  currentQuestionIndex < currentModule!.test.questions.count{
+            
+            currentQuestion = currentModule?.test.questions[currentQuestionIndex]
+            lessonDescription = addStyling(currentQuestion!.content)
+        }
+        else{
+            
+            currentQuestionIndex = 0
+            currentQuestion = nil
+        }
+    }
     //check if there's a next lesson
     func hasNextLesson() -> Bool{
         

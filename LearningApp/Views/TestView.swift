@@ -73,9 +73,19 @@ struct TestView: View {
                 
                 //Button
                 Button{
-                    submit = true
-                    
-                    numCorrect += selectedAnswersIndex == model.currentQuestion!.correctIndex ? 1 : 0
+                    // check if  answer has been submitted
+                    if submit{
+                        // if is submitted pass to the next question
+                        model.nextQuestion()
+                        
+                        //reset proprety
+                        selectedAnswersIndex = nil
+                        submit = false
+                    }else{
+                        // if not submitted the answer
+                        submit = true
+                        numCorrect += selectedAnswersIndex == model.currentQuestion!.correctIndex ? 1 : 0
+                    }
                     
                 } label: {
                     ZStack{
@@ -83,7 +93,7 @@ struct TestView: View {
                         RectangleCardButton(color: .green)
                             .frame(height:48)
                         
-                        Text("Submit")
+                        Text(buttonText)
                             .foregroundColor(.white)
                         
                     }.padding()
@@ -94,6 +104,21 @@ struct TestView: View {
         }
         else{
             Text("Is Nil")
+        }
+    }
+    
+    var buttonText:String{
+        
+        if submit{
+            if model.currentQuestionIndex + 1 == model.currentModule?.test.questions.count{
+                return "Finish"
+            }
+            else{
+                return "Next"
+            }
+        }
+        else{
+            return "Submit"
         }
     }
 }
