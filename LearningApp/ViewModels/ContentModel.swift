@@ -36,6 +36,9 @@ class ContentModel: ObservableObject{
         
         //Get local data module
         getLocalData()
+        
+        //Get local data module
+        getRemoteData()
     }
     
     // Mark - Data
@@ -53,8 +56,10 @@ class ContentModel: ObservableObject{
             //try to decode the json an array of module
             let modules = try jsonObjet.decode([Module].self, from: jsonData)
             
-            //assign objet modules
-            self.modules = modules
+            DispatchQueue.main.async {
+                //assign objet modules
+                self.modules = modules
+            }
         }
         catch{
             //impossible to parse de the file
@@ -76,6 +81,36 @@ class ContentModel: ObservableObject{
         }
     }
     
+    //Get remote data
+    func getRemoteData(){
+        
+        let urlData = URL(string: "https://cm-pingouin.github.io/LearningApp-Data/data2.json")
+        
+        guard urlData != nil else {
+            return
+        }
+        
+        // create a URLRequest objet
+        URLSession.shared.dataTask(with: URLRequest(url: urlData!)){ (data, response, error) in
+            // Check if there's an error
+            guard error == nil else{
+                //There was an error
+                return
+            }
+            
+            // Handle the response
+            do{
+               let modules = try JSONDecoder().decode([Module].self, from: data!)
+                DispatchQueue.main.async {
+                    self.modules += modules
+                }
+                
+            }catch{
+                print(error)
+            }
+        }.resume()
+
+    }
     
     //Mark - Function
     //get module by id
@@ -160,9 +195,11 @@ class ContentModel: ObservableObject{
         //check if index isn't out of range
         if(currentLessonIndex < currentModule!.content.lessons.count){
             
-            //set the lesson property
-            currentLesson = currentModule!.content.lessons[currentLessonIndex]
-            lessonDescription = addStyling(currentLesson!.explanation)
+            DispatchQueue.main.async {
+                //set the lesson property
+                self.currentLesson = self.currentModule!.content.lessons[self.currentLessonIndex]
+                self.lessonDescription = self.addStyling(self.currentLesson!.explanation)
+            }
         }
         else{
             //reseting
