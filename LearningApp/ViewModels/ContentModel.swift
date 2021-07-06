@@ -95,11 +95,11 @@ class ContentModel: ObservableObject{
     }
     
     //get lesson by id lesson
-    func beginLesson(_ lessonId:Int){
+    func beginLesson(_ moduleId:Int){
         
         //check that lesson index is within range of module lessons
-        if lessonId < currentModule!.content.lessons.count{
-            currentLessonIndex = lessonId
+        if moduleId < currentModule!.content.lessons.count{
+            currentLessonIndex = moduleId
         }else{
             currentLessonIndex = 0
         }
@@ -110,16 +110,17 @@ class ContentModel: ObservableObject{
     }
     
     //get Question by id lesson
-    func beginTest(_ testId:Int){
+    func beginTest(_ moduleId:Int){
         
         // set the  current module
-        beginModule(testId)
+        beginModule(moduleId)
         
         // set the current question
         currentQuestionIndex = 0
         
         if currentModule?.test.questions.count ?? 0 > 0 {
-            currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+            
+            currentQuestion = currentModule?.test.questions[currentQuestionIndex]
             lessonDescription = addStyling(currentQuestion!.content)
         }
     }
