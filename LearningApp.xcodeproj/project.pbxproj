@@ -24,6 +24,7 @@
 		0DFB9B6E26938CB60026F720 /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB9B6D26938CB60026F720 /* CodeTextView.swift */; };
 		0DFB9B7026945BBB0026F720 /* RectangleCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB9B6F26945BBB0026F720 /* RectangleCardButton.swift */; };
 		0DFB9B72269466DE0026F720 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFB9B71269466DE0026F720 /* TestView.swift */; };
+		0DFCD5542694D525005D082D /* TestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFCD5532694D525005D082D /* TestResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		0DFB9B6D26938CB60026F720 /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextView.swift; sourceTree = "<group>"; };
 		0DFB9B6F26945BBB0026F720 /* RectangleCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCardButton.swift; sourceTree = "<group>"; };
 		0DFB9B71269466DE0026F720 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		0DFCD5532694D525005D082D /* TestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				0DFB9B6026932FA00026F720 /* HomeViewRow.swift */,
 				0DFB9B6D26938CB60026F720 /* CodeTextView.swift */,
 				0DFB9B6F26945BBB0026F720 /* RectangleCardButton.swift */,
+				0DFCD5532694D525005D082D /* TestResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DFB9B72269466DE0026F720 /* TestView.swift in Sources */,
+				0DFCD5542694D525005D082D /* TestResultView.swift in Sources */,
 				0D70BBF5269312F7008518A9 /* HomeView.swift in Sources */,
 				0DFB9B6126932FA00026F720 /* HomeViewRow.swift in Sources */,
 				0DFB9B632693393B0026F720 /* ContentView.swift in Sources */,

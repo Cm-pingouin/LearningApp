@@ -15,8 +15,6 @@ struct TestView: View {
     @State var numCorrect = 0
     @State var submit = false
     
-    
-    
     var body: some View {
         
         VStack{
@@ -77,7 +75,7 @@ struct TestView: View {
                 }.navigationBarTitle("\(model.currentModule?.category ?? "") Test")
             }
             else{
-                
+                TestResultView(numCorrect: numCorrect)
             }
             
             //Button
