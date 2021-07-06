@@ -20,12 +20,17 @@ class ContentModel: ObservableObject{
     @Published var currentLesson:Lesson?
     var currentLessonIndex = 0
     
+    // Current Question
+    @Published var currentQuestion:Question?
+    var currentQuestionIndex = 0
+    
     // lessonDescription NSAttributed
     @Published var lessonDescription = NSAttributedString()
     var styleData: Data?
     
     // Current selected for nagivation link
-    @Published var currentSelected:Int?
+    @Published var currentContentSelected:Int?
+    @Published var currentTestSelected:Int?
     
     init() {
         
@@ -90,7 +95,6 @@ class ContentModel: ObservableObject{
     }
     
     //get lesson by id lesson
-    
     func beginLesson(_ lessonId:Int){
         
         //check that lesson index is within range of module lessons
@@ -103,6 +107,21 @@ class ContentModel: ObservableObject{
         // set the current lesson
         currentLesson = currentModule!.content.lessons[currentLessonIndex]
         lessonDescription = addStyling(currentLesson!.explanation)
+    }
+    
+    //get Question by id lesson
+    func beginTest(_ testId:Int){
+        
+        // set the  current module
+        beginModule(testId)
+        
+        // set the current question
+        currentQuestionIndex = 0
+        
+        if currentModule?.test.questions.count ?? 0 > 0 {
+            currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+            lessonDescription = addStyling(currentQuestion!.content)
+        }
     }
     
     //check if there's a next lesson

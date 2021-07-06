@@ -50,7 +50,7 @@ struct ContentDetailView: View {
                 // Back to the home page
                 Button(action: {
                     
-                    model.currentSelected = nil
+                    model.currentContentSelected = nil
                 }, label: {
                     ZStack{
                         

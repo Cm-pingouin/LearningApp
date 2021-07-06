@@ -37,7 +37,7 @@ struct HomeView: View {
                                             model.beginModule(module.id)
                                         }),
                                     tag : module.id,
-                                    selection: $model.currentSelected,
+                                    selection: $model.currentContentSelected,
     
                                     label: {
                                         //Learning Card
@@ -46,8 +46,24 @@ struct HomeView: View {
                                     })
                                 
                                 
-                                // Test Card
-                                HomeViewRow(image: module.test.image, title: "Test \(module.category)", description: module.test.description, count: "\(module.test.questions.count) Test", time: module.test.time)
+                                // Test NavigationLink
+                               
+                                NavigationLink(
+                                    destination: TestView()
+                                        .onAppear(perform: {
+                                            model.beginTest(module.id)
+                                        }),
+                                    tag : module.id,
+                                    selection: $model.currentTestSelected,
+    
+                                    label: {
+                                        // Test Card
+                                        HomeViewRow(image: module.test.image, title: "Test \(module.category)", description: module.test.description, count: "\(module.test.questions.count) Test", time: module.test.time)
+                                        
+                                    })
+                                
+                                // 
+                                NavigationLink( destination: EmptyView(), label: { EmptyView()})
                             }
                         }
                     }.padding()
